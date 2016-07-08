@@ -25,8 +25,7 @@
             $cpf = (string) preg_replace( '/[^0-9]/', '', $cpf);
 
             if(!$cpf or strlen($cpf) != 11) {
-                throw new InvalidArgumentException("Para validação é necessário um CPF válido");
-                exit();
+                return false;
             }
 
             // Inicia a classe de validação
@@ -67,8 +66,7 @@
     		$cnpj_original = $cnpj = (string) preg_replace( '/[^0-9]/', '', $cnpj);
 
             if(!$cnpj || strlen($cnpj) != 14) {
-                throw new InvalidArgumentException("Para validação é necessário um CNPJ válido");
-                exit();
+                return false;
             }
 
             // Inicializa o validador
