@@ -1,0 +1,22 @@
+{
+    "name": "masterkey/valid-docs",
+    "description": "Realiza a validação de documentos brasileiros, como CPF e CNPJ",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matheus Lopes Santos",
+            "email": "fale_com_lopez@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Masterkey\\ValidDocs\\": "src/"
+        }
+    }
+}
