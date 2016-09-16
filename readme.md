@@ -30,8 +30,13 @@ Agora, basta adicionar o autoloader e incluir a classe. A utilização também �
     if(ValidDocs::validaCNPJ('11.111.111/1111-11')) {
         echo "O CNPJ informado é inválido";
     }
+
+    // Valida um CNPJ
+    if(ValidDocs::validaPIS('111.11111.11/1')) {
+        echo "O PIS informado é inválido";
+    }
 ```
 
-De acordo a demanda, outros documentos também serão acrescentados, como o PIS.
+De acordo a demanda, outros documentos também serão acrescentados.
 
 Contribuições serão muito bem vindas.
