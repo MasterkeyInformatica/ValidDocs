@@ -98,6 +98,12 @@
             return false;
         }
 
+        /**
+         * Realiza a Validação do número do PIS iunformado
+         *
+         * @param   string $pis
+         * @return  bool
+         */
         public static function validaPIS($pis = '')
         {
             $pis = (string) preg_replace( '/[^0-9]/', '', $pis);

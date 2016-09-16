@@ -57,18 +57,7 @@
 
     		// Captura o resto da divisão entre $soma_digitos dividido por 11
     		// Ex.: 196 % 11 = 9
-    		$soma_digitos = $soma_digitos % 11;
-
-    		// Verifica se $soma_digitos é menor que 2
-    		if ( $soma_digitos < 2 ) {
-    			// $soma_digitos agora será zero
-    			$soma_digitos = 0;
-    		} else {
-    			// Se for maior que 2, o resultado é 11 menos $soma_digitos
-    			// Ex.: 11 - 9 = 2
-    			// Nosso dígito procurado é 2
-    			$soma_digitos = 11 - $soma_digitos;
-    		}
+    		$soma_digitos = $this->mod_11($soma_digitos);
 
     		// Concatena mais um dígito aos primeiro nove dígitos
     		// Ex.: 025462884 + 2 = 0254628842
@@ -111,9 +100,16 @@
             return $todos_iguais;
         }
 
+        /**
+         * Realiza a checkagem de u8m número de PIS
+         *
+         * @param   string  $pis
+         * @return  bool
+         */
         public function checkPIS($pis)
         {
-            $multiplicador = [3,2,9,8,7,6,5,4,3,2];
+            // Este múltiplcador nunca é alterado :)
+            $multiplicador = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
 
             $soma = 0;
 
@@ -125,13 +121,9 @@
                 $soma += $atual * $multiplicador[$i];
             }
 
-            $resto = $soma % 11;
-
-            if($resto < 2) {
-                $resto = 0;
-            } else {
-                $resto = 11 - $resto;
-            }
+            // Captura o resto da divisão entre $soma_digitos dividido por 11
+    		// Ex.: 196 % 11 = 9
+            $resto = $this->mod_11($soma);
 
             $digito = (int) $pis[10];
 
@@ -139,7 +131,24 @@
                 return false;
             }
 
-
             return true;
+        }
+
+        /**
+         * Realiza a soma do mod 11, utilizado no CPF e no PIS
+         *
+         * @param   int  $number
+         * @return  int
+         */
+        private function mod_11($number) {
+            $resto = $number % 11;
+
+            if($resto < 2) {
+                $resto = 0;
+            } else {
+                $resto = 11 - $resto;
+            }
+
+            return $resto;
         }
     }
