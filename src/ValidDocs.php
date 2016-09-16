@@ -8,8 +8,8 @@
      * Realiza a validação de documentos brasileiros, como CPF e CNPJ
      *
      * @author  Matheus Lopes Santos <fale_com_lopez@hotmail.com>
-     * @version 1.0.0
-     * @since   08/07/2016
+     * @version 1.2.0
+     * @since   11/07/2016
      */
     class ValidDocs
     {
@@ -96,5 +96,17 @@
 
             // CNPJ inválido
             return false;
+        }
+
+        public static function validaPIS($pis = '')
+        {
+            $pis = (string) preg_replace( '/[^0-9]/', '', $pis);
+
+            if(!$pis || strlen($pis) != 11) {
+                return false;
+            }
+
+            $validador = new ValidationAlgorithms($pis);
+            return $validador->checkPIS($pis);
         }
     }

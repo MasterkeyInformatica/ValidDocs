@@ -110,4 +110,36 @@
             // ou falso para todos os números diferentes
             return $todos_iguais;
         }
+
+        public function checkPIS($pis)
+        {
+            $multiplicador = [3,2,9,8,7,6,5,4,3,2];
+
+            $soma = 0;
+
+            $pis = str_split($pis);
+
+            for($i = 0; $i < 10; $i++) {
+                $atual = (int) $pis[$i];
+
+                $soma += $atual * $multiplicador[$i];
+            }
+
+            $resto = $soma % 11;
+
+            if($resto < 2) {
+                $resto = 0;
+            } else {
+                $resto = 11 - $resto;
+            }
+
+            $digito = (int) $pis[10];
+
+            if( $resto != $digito ) {
+                return false;
+            }
+
+
+            return true;
+        }
     }
