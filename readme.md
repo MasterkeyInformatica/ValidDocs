@@ -20,16 +20,30 @@ Agora, basta adicionar o autoloader e incluir a classe. A utilização também �
     require_once "vendor/autoload.php";
 
     use Masterkey\ValidDocs\ValidDocs;
+    
+    try {
+        // Validando um CPF
+        if(ValidDocs::validaCPF('111.111.111-11')) {
+            echo "O CPF informádo é inválido";
+        }
 
-    // Validando um CPF
-    if(ValidDocs::validaCPF('111.111.111-11')) {
-        echo "O CPF informádo é inválido";
+        // Validando um CNPJ
+        if(ValidDocs::validaCNPJ('11.111.111/1111-11')) {
+            echo "O CNPJ informado é inválido";
+        }
+        
+        //Validando PIS
+        if(ValidDocs::validaPIS('11.111111.11-1')) {
+            echo "O PIS informado é inválido";
+        }
+        ```
+    } catch (UnderflowException $erroValidaDocumento) {
+        die($erroValidaDocumento->getMessage() . ' : ' . $erroValidaDocumento->getTraceStackString());
+    
+    } catch (InvalidArgumentException $erroValidaDocumento) {
+        die($erroValidaDocumento->getMessage() . ' : ' . $erroValidaDocumento->getTraceStackString());
     }
-
-    // Validando um CNPJ
-    if(ValidDocs::validaCNPJ('11.111.111/1111-11')) {
-        echo "O CNPJ informado é inválido";
-    }
+<<<<<<< HEAD
 
     // Valida um CNPJ
     if(ValidDocs::validaPIS('111.11111.11/1')) {
@@ -38,5 +52,10 @@ Agora, basta adicionar o autoloader e incluir a classe. A utilização também �
 ```
 
 De acordo a demanda, outros documentos também serão acrescentados.
+=======
 
+    
+>>>>>>> origin/master
+
+De acordo a demanda, outros documentos também serão acrescentados.
 Contribuições serão muito bem vindas.
